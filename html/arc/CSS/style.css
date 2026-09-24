@@ -1,0 +1,79 @@
+:root {
+  --azul-secundario: #1e223e;
+  --azul-oscuro: #0f111f;
+  --azul-fondo-iconos: #262b4e;
+  --naranja: #fe6c05;
+  --borde-naranja: #803605;
+  --blanco-primario: #ffffff;
+  --gris-inactivo: #9699ae;
+  --negro: #000000;
+  --gris-bordes: #505578;
+}
+
+.boton-primario {
+  background-color: var(--naranja);
+  border-color: var(--borde-naranja);
+  color: var(--negro);
+  font-size: 1.7ch;
+  font-weight: bold;
+  margin-right: 30px;
+  width: 100px;
+}
+
+.boton-primario:hover {
+  background-color: var(--borde-naranja);
+  border-color: var(--negro);
+  color: var(--blanco-primario);
+  font-size: 1.8ch;
+  font-weight: bold;
+}
+
+.boton-secundario {
+  color: var(--gris-inactivo);
+  background-color: transparent;
+  border-style: solid;
+  border-color: var(--gris-inactivo);
+  width: 100px;
+}
+.boton-secundario:hover {
+  background-color: var(--negro);
+  border-color: var(--gris-inactivo);
+  color: var(--blanco-primario);
+  font-size: 1.8ch;
+  font-weight: bold;
+}
+
+header nav {
+  position: fixed;
+  height: 70px;
+  background-color: var(--azul-secundario);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  color: var(--blanco-primario);
+  align-items: center;
+  margin: 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  grid-column: 2/3;
+  margin: 0;
+  justify-content: center;
+}
+
+header nav div {
+  grid-column: 3/4;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 30%;
+}
+
+header nav h1 {
+  grid-column: 1/2;
+  margin: 0;
+  margin-left: 10%;
+}
