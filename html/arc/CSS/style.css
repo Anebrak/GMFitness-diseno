@@ -8,8 +8,74 @@
   --gris-inactivo: #9699ae;
   --negro: #000000;
   --gris-bordes: #505578;
+
+  /* =========================================
+     1. NARANJA
+     ========================================= */
+  --naranja-100: #ffceac;
+  --naranja-200: #ffb682;
+  --naranja-300: #fe9d58;
+  --naranja-400: #fe852f;
+  --naranja-500: #fe6c05;
+  --naranja-600: #d45a04;
+  --naranja-700: #a94803;
+  --naranja-800: #7f3603;
+  --naranja-900: #552402;
+
+  /* =========================================
+     2. AZUL
+     ========================================= */
+  --azul-100: #b9bbc9;
+  --azul-200: #9699ae;
+  --azul-300: #737793;
+  --azul-400: #505578;
+  --azul-500: #2d335d;
+  --azul-600: #262b4e;
+  --azul-700: #1e223e;
+  --azul-800: #171a2f;
+  --azul-900: #0f111f;
+
+  /* =========================================
+     3. AZUL OSCURO
+     ========================================= */
+  --azul-oscuro-100: #abacb4;
+  --azul-oscuro-200: #81838f;
+  --azul-oscuro-300: #575a69;
+  --azul-oscuro-400: #2d3044;
+  --azul-oscuro-500: #03071e;
+  --azul-oscuro-600: #030619;
+  --azul-oscuro-700: #020514;
+  --azul-oscuro-800: #02040f;
+  --azul-oscuro-900: #01020a;
+
+  /* =========================================
+     4. NEGRO / GRIS
+     ========================================= */
+  --negro-100: #b2b2b2;
+  --negro-200: #8c8c8c;
+  --negro-300: #666666;
+  --negro-400: #3f3f3f;
+  --negro-500: #191919;
+  --negro-600: #151515;
+  --negro-700: #111111;
+  --negro-800: #0d0d0d;
+  --negro-900: #080808;
+
+  /* =========================================
+     5. BLANCO / GRIS CLARO
+     ========================================= */
+  --blanco-500: #ffffff;
+  --blanco-600: #d5d5d5;
+  --blanco-700: #aaaaaa;
+  --blanco-800: #808080;
+  --blanco-900: #555555;
 }
 
+/* 
+--------------------------------
+            Navbar
+--------------------------------
+*/
 .boton-primario {
   background-color: var(--naranja);
   border-color: var(--borde-naranja);
@@ -18,6 +84,7 @@
   font-weight: bold;
   margin-right: 30px;
   width: 100px;
+  transition: all 0.3s ease;
 }
 
 .boton-primario:hover {
@@ -34,7 +101,9 @@
   border-style: solid;
   border-color: var(--gris-inactivo);
   width: 100px;
+  transition: all 0.3s ease;
 }
+
 .boton-secundario:hover {
   background-color: var(--negro);
   border-color: var(--gris-inactivo);
@@ -42,6 +111,12 @@
   font-size: 1.8ch;
   font-weight: bold;
 }
+
+header {
+  box-sizing: border-box;
+
+}
+
 
 header nav {
   position: fixed;
@@ -53,6 +128,7 @@ header nav {
   color: var(--blanco-primario);
   align-items: center;
   margin: 0;
+  box-sizing: border-box;
 }
 
 header nav ul {
@@ -68,12 +144,242 @@ header nav div {
   grid-column: 3/4;
   margin: 0;
   display: flex;
-  justify-content: space-between;
-  margin-left: 30%;
+  justify-content: space-around;
+  margin-left: 15%;
+  margin-right: 15%;
+
 }
 
 header nav h1 {
   grid-column: 1/2;
   margin: 0;
   margin-left: 10%;
+}
+
+/* 
+--------------------------------
+            oferta
+--------------------------------
+*/
+
+#oferta {
+  background-color: var(--azul-oscuro);
+  height: 1000px;
+}
+
+#cajas-oferta {
+  display: grid;
+  grid-template-columns: 1fr 30% 30% 1fr;
+  grid-template-rows: 70px 15% 30% 30% 1fr;
+  height: 100%;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+/* 
+--------------------------------
+            Cajas
+--------------------------------
+*/
+.caja-of h2 {
+  color: var(--blanco-primario);
+}
+
+.caja-of p {
+  color: var(--gris-inactivo);
+}
+
+.caja-of i {
+  color: var(--naranja);
+  font-size: 9ch;
+  background-color: var(--azul-fondo-iconos);
+  margin: 20px;
+  border-radius: 30px;
+  height: 130px;
+  width: 130px;
+  align-content: center;
+  justify-content: center;
+
+}
+
+
+.caja-of {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-content: center;
+  background-color: var(--azul-secundario);
+  border-radius: 30px;
+  border-style: solid;
+  border-color: var(--azul-fondo-iconos);
+  border-width: 7px;
+  transition: all 0.3s ease;
+}
+
+.caja-of:hover {
+  transform: scale(1.02);
+  background-color: var(--azul-500);
+  border-color: var(--azul-400);
+}
+
+.caja-of:hover p {
+  color: var(--azul-100);
+}
+
+.caja-of:hover i {
+  background-color: var(--azul-600);
+}
+
+
+/* 
+--------------------------------
+grid oferta
+--------------------------------
+*/
+#cajas-oferta h1 {
+  color: var(--naranja);
+  grid-column: 2/4;
+  grid-row: 2/3;
+  text-align: center;
+  align-self: center;
+  font-size: 6ch;
+}
+
+#of-1 {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+#of-2 {
+  grid-column: 3/4;
+  grid-row: 3/4;
+}
+
+#of-3 {
+  grid-column: 2/3;
+  grid-row: 4/5;
+}
+
+#of-4 {
+  grid-column: 3/4;
+  grid-row: 4/5;
+}
+
+/* 
+--------------------------------  
+          Planes
+--------------------------------
+*/
+
+#planes {
+  background-color: var(--azul-secundario);
+  height: 1100px;
+}
+
+
+#cajas-planes {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 35% 35% 1fr;
+  grid-template-rows: 50px 8% 8% 1fr 50px;
+  color: var(--blanco-primario);
+  column-gap: 30px;
+  row-gap: 20px;
+}
+
+#gratis {
+  grid-column: 2/3;
+  grid-row: 4/5;
+  width: 100%;
+  height: 100%;
+  background-color: var(--azul-oscuro);
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#btn-gratis {
+  justify-self: center;
+  width: 60%;
+  height: 60px;
+  font-size: 3ch;
+}
+
+
+
+#gratis div {
+  margin-top: 3em;
+}
+
+#gratis ul {
+  text-align: left;
+  list-style: none;
+  padding-left: 0;
+  font-size: 2.4ch;
+}
+
+#texto-planes {
+  display: grid;
+}
+
+#texto-planes h3 {
+  font-size: 6ch;
+  grid-column: 1/3;
+  grid-row: 1/2;
+}
+
+#texto-planes div {
+  grid-column: 1/3;
+  grid-row: 2/3;
+  display: flex;
+  font-size: 3ch;
+  margin: 0px;
+
+}
+
+
+
+
+#gratis ul li {
+  padding-left: 1em;
+  position: relative;
+  padding-top: 15px;
+}
+
+#gratis ul li::before {
+  content: "✓";
+  position: relative;
+  left: 0;
+  color: var(--gris-inactivo);
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+
+
+#premiun {
+  grid-column: 3/4;
+  grid-row: 4/5;
+  width: 100%;
+  height: 100%;
+  background-color: var(--azul-oscuro);
+
+}
+
+#cajas-planes h1 {
+  grid-column: 2/4;
+  grid-row: 2/3;
+  text-align: center;
+  align-content: center;
+  color: var(--naranja);
+  font-size: 7ch;
+}
+
+#cajas-planes h2 {
+  grid-column: 2/4;
+  grid-row: 3/4;
+  text-align: center;
+  align-content: center;
+
 }
