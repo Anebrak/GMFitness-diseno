@@ -127,7 +127,7 @@ header nav {
   align-items: center;
   margin: 0;
   box-sizing: border-box;
-  z-index: 1000;
+  z-index: 100;
 }
 
 header nav ul {
@@ -153,6 +153,113 @@ header nav h1 {
   margin: 0;
   margin-left: 10%;
 }
+/* 
+--------------------------------
+            Login
+--------------------------------
+*/
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s,
+    visibility 0.25s;
+  z-index: 1000;
+}
+.modal-overlay.activo {
+  opacity: 1;
+  visibility: visible;
+}
+#login {
+  position: relative;
+  background: var(--azul-secundario);
+  width: min(100%, 450px);
+  padding: 2rem 1.5rem 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transform: translateY(-20px);
+  transition: transform 0.25s;
+  color: var(--blanco-primario);
+}
+.modal-overlay.activo #login {
+  transform: translateY(0);
+}
+
+#login input {
+  padding: 0.6rem;
+  border: 1px solid var(--azul-fondo-iconos);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--azul-oscuro);
+  color: var(--blanco-primario);
+  outline: none;
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.7rem;
+  background: none;
+  border: 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--blanco-primario);
+}
+#ingreso-login {
+  width: 200px;
+  align-self: center;
+  margin-top: 10px;
+}
+
+/*----------------------------
+           Register
+-------------------------------*/
+
+#ingreso-register {
+  width: 200px;
+  align-self: center;
+  margin-top: 10px;
+}
+#register {
+  position: relative;
+  background: var(--azul-secundario);
+  width: min(100%, 450px);
+  padding: 2rem 1.5rem 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transform: translateY(-20px);
+  transition: transform 0.25s;
+  color: var(--blanco-primario);
+}
+#register input {
+  padding: 0.6rem;
+  border: 1px solid var(--azul-fondo-iconos);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--azul-oscuro);
+  color: var(--blanco-primario);
+  outline: none;
+}
+
+#linklogin {font-size: 1.5ch;}
+#linklogin a {color:var(--naranja);}
+
+
+
+
+
+
 
 /* 
 --------------------------------
@@ -299,7 +406,7 @@ grid oferta
   grid-row: 3/4;
   text-align: center;
   align-content: center;
-  margin-bottom:30px ;
+  margin-bottom: 30px;
 }
 /* 
 --------------------------------  
@@ -344,7 +451,6 @@ grid oferta
   padding-left: 0;
   font-size: 2ch;
 }
-
 
 #texto-planes {
   display: grid;
@@ -463,4 +569,3 @@ grid oferta
   height: 60px;
   font-size: 3ch;
 }
-

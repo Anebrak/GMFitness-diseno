@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Landing page</title>
 </head>
+
 <body>
     <header>
         <nav>
@@ -19,12 +21,41 @@
                 <li>testimonios</li>
             </ul>
             <div>
-                <button class="btn boton-secundario" type="button"> Register</button>
-                <button class="btn boton-primario" type="button"> Login</button>
+                <button class="btn boton-secundario" id="abrir-register" type="button"> Register</button>
+                <button class="btn boton-primario" id="abrir-login" type="button"> Login</button>
             </div>
         </nav>
     </header>
     <main>
+        <div class="modal-overlay" id="modal-login" aria-hidden="true">
+            <section id="login" role="dialog" aria-modal="true">
+                <button class="modal-cerrar" id="cerrar-login" type="button" aria-label="Cerrar">&times;</button>
+                <span>Nombre</span>
+                <input type="text">
+                <span>Contraseña</span>
+                <input type="text">
+                <span id="linklogin">Aun no estas registrado haz click<a> aqui </a>.</span>
+                <button class="btn boton-primario" id="ingreso-login" type="button"> Login</button>
+            </section>
+        </div>
+        
+
+          <div class="modal-overlay" id="modal-register" aria-hidden="true">
+            <section id="register" role="dialog" aria-modal="true">
+                <button class="modal-cerrar" id="cerrar-register" type="button" aria-label="Cerrar">&times;</button>
+                <span>Nombre</span>
+                <input type="text">
+                <span>Correo</span>
+                <input type="email">
+                <span>Contraseña</span>
+                <input type="password">
+                <span>Confirmar contraseña</span>
+                <input type="password">
+                <span id="linklogin">Si ya estas registrado haz click<a> aqui </a>.</span>
+                <button class="btn boton-primario" id="ingreso-register" type="button">Register</button>
+            </section>
+        </div>
+        
         <section id="oferta">
             <div id="cajas-oferta">
                 <h1>Lo que ofrecemos</h1>
@@ -53,8 +84,8 @@
 
         <section id="planes">
             <div id="cajas-planes">
-            <h1>Planes</h1>
-            <h2>Empieza gratis, escala cuando quieras.</h2>
+                <h1>Planes</h1>
+                <h2>Empieza gratis, escala cuando quieras.</h2>
                 <article id="gratis">
                     <div id="texto-planes">
                         <h3>Gratis</h3>
@@ -81,7 +112,7 @@
                         <h3>Premiun</h3>
                         <div>
                             <p>$89.000 /</p>
-                            <p class="p-texto" >al mes</p>
+                            <p class="p-texto">al mes</p>
                         </div>
                     </div>
                     <div>
@@ -90,18 +121,21 @@
                             <li>Personalización avanzada (progresión de peso, descansos, macros por comida,
                                 sustituciones de
                                 alimentos).</li>
-                            <li>Puede editar y regenerar sus rutinas y dietas las veces que quiera.</li>
-                            <li>El sistema ajusta automáticamente la dieta y rutina según su progreso real.</li>
-                            <li>Tiene acceso a todo su historial y gráficas de evolución.</li>
-                        </ul>
-                    </div>
-                    <div id="bt-premiun">
-                         <button id="btn-premiun" type="button" class="btn boton-primario">Optener premiun</button>
+                                <li>Puede editar y regenerar sus rutinas y dietas las veces que quiera.</li>
+                                <li>El sistema ajusta automáticamente la dieta y rutina según su progreso real.</li>
+                                <li>Tiene acceso a todo su historial y gráficas de evolución.</li>
+                            </ul>
+                        </div>
+                        <div id="bt-premiun">
+                            <button id="btn-premiun" type="button" class="btn boton-primario">Optener premiun</button>
                     </div>
                 </article>
 
             </div>
         </section>
     </main>
+    <script src="arc/JS/login.js"></script>
+    <script src="arc/JS/register.js"></script>
 </body>
+
 </html>
