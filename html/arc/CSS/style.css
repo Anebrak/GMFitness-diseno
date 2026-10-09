@@ -270,6 +270,7 @@ grid oferta
   background-color: var(--azul-secundario);
   height: 1100px;
 }
+
 /* 
 --------------------------------  
           Planes orden
@@ -299,8 +300,9 @@ grid oferta
   grid-row: 3/4;
   text-align: center;
   align-content: center;
-  margin-bottom:30px ;
+  margin-bottom: 30px;
 }
+
 /* 
 --------------------------------  
           Gratis
@@ -321,6 +323,7 @@ grid oferta
   border-radius: 20px;
   transition: all 0.3s ease;
 }
+
 #gratis:hover {
   transform: scale(1.02);
   background-color: var(--azul-600);
@@ -382,6 +385,7 @@ grid oferta
   padding-right: 10px;
   font-size: 3ch;
 }
+
 /* 
 --------------------------------  
           Premiun
@@ -433,6 +437,7 @@ grid oferta
   padding-right: 10px;
   font-size: 3ch;
 }
+
 #texto-planes-p {
   display: grid;
   margin-top: 2em;
@@ -454,13 +459,49 @@ grid oferta
   margin: 0px;
   height: fit-content;
 }
+
 #bt-premiun {
   display: grid;
   justify-items: center;
 }
+
 #btn-premiun {
   width: 60%;
   height: 60px;
   font-size: 3ch;
 }
+/* 
+--------------------------------  
+          testimoniios
+--------------------------------
+*/
+#testimonios {
+  background-color: var(--azul-oscuro);
+  height: 1000px;
+}
 
+#cajas-testimonios {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 10% 40% 40% 10%;
+  grid-template-rows: 1fr 1fr 30% 30% 1fr;
+}
+
+/* 
+--------------------------------  
+          orden
+--------------------------------
+*/
+
+#cajas-testimonios h1 {
+  grid-column: 2/4;
+  grid-row: 1/2;
+}
+
+#cajas-testimonios h2 {
+  grid-column: 2/4;
+  grid-row: 2/3;
+}
+
+#cajas-testimonios{}
