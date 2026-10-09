@@ -712,13 +712,13 @@ footer {
 
 footer h1 {
   color: var(--blanco-primario);
-  font-size: 7ch;
+  font-size: 6ch;
   text-align: center;
 }
 
 footer h2 {
   color: var(--naranja);
-  font-size: 6ch;
+  font-size: 5ch;
   text-align: center;
 
 
@@ -738,15 +738,16 @@ footer h2 {
   list-style: none;
   display: flex;
   gap: 10%;
-  font-size: 6ch;
+  font-size: 4ch;
   padding: 0;
-  margin-top: 40px;
+  margin-top: 20px;
+  justify-content: center;
 }
 
 #footer-1 i {
   background-color: var(--azul-oscuro);
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   text-align: center;
   align-content: center;
   border-color: var(--naranja);
@@ -762,7 +763,7 @@ footer h2 {
 */
 
 #footer-2 ul {
-  font-size: 3.8ch;
+  font-size: 3ch;
   list-style: none;
   color: var(--gris-bordes);
   padding: 0;
@@ -784,6 +785,7 @@ footer h2 {
 */
 .descarga {
   display: grid;
+  width: 300px;
   background-color: var(--azul-oscuro);
   border-color: var(--naranja);
   border-style: solid;
@@ -791,6 +793,7 @@ footer h2 {
   margin-bottom: 5%;
   margin-top: 5%;
   padding: 3%;
+  justify-self: center;
 }
 
 .descarga i {
@@ -803,7 +806,7 @@ footer h2 {
 }
 
 .descarga h2 {
-  font-size: 4ch;
+  font-size: 3ch;
   grid-column: 2/3;
   grid-row: 3/4;
   text-align: start;
