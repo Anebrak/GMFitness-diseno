@@ -21,12 +21,41 @@
                 <li>testimonios</li>
             </ul>
             <div>
-                <button class="btn boton-secundario" type="button"> Register</button>
-                <button class="btn boton-primario" type="button"> Login</button>
+                <button class="btn boton-secundario" id="abrir-register" type="button"> Register</button>
+                <button class="btn boton-primario" id="abrir-login" type="button"> Login</button>
             </div>
         </nav>
     </header>
     <main>
+        <div class="modal-overlay" id="modal-login" aria-hidden="true">
+            <section id="login" role="dialog" aria-modal="true">
+                <button class="modal-cerrar" id="cerrar-login" type="button" aria-label="Cerrar">&times;</button>
+                <span>Nombre</span>
+                <input type="text">
+                <span>Contraseña</span>
+                <input type="text">
+                <span id="linklogin">Aun no estas registrado haz click<a> aqui </a>.</span>
+                <button class="btn boton-primario" id="ingreso-login" type="button"> Login</button>
+            </section>
+        </div>
+
+
+        <div class="modal-overlay" id="modal-register" aria-hidden="true">
+            <section id="register" role="dialog" aria-modal="true">
+                <button class="modal-cerrar" id="cerrar-register" type="button" aria-label="Cerrar">&times;</button>
+                <span>Nombre</span>
+                <input type="text">
+                <span>Correo</span>
+                <input type="email">
+                <span>Contraseña</span>
+                <input type="password">
+                <span>Confirmar contraseña</span>
+                <input type="password">
+                <span id="linklogin">Si ya estas registrado haz click<a> aqui </a>.</span>
+                <button class="btn boton-primario" id="ingreso-register" type="button">Register</button>
+            </section>
+        </div>
+
         <section id="oferta">
             <div id="cajas-oferta">
                 <h1>Lo que ofrecemos</h1>
@@ -107,7 +136,7 @@
             <div id="cajas-testimonios">
                 <h1 class="titulo"> Testimonios</h1>
                 <h2>Lo que dicen nuestros usuarios</h2>
-                <article class="caja-test">
+                <article class="caja-test" id="testimonio-1">
                     <ul style="list-style-type: '★ ';">
                         <li></li>
                         <li></li>
@@ -121,7 +150,7 @@
                         <h1>DM</h1>
                     </div>
                 </article>
-                <article class="caja-test">
+                <article class="caja-test" id="testimonio-2">
                     <ul style="list-style-type: '★ ';">
                         <li></li>
                         <li></li>
@@ -136,7 +165,7 @@
                         <h1>SR</h1>
                     </div>
                 </article>
-                <article class="caja-test">
+                <article class="caja-test" id="testimonio-3">
                     <ul style="list-style-type: '★ ';">
                         <li></li>
                         <li></li>
@@ -151,7 +180,7 @@
                         <h1>BR</h1>
                     </div>
                 </article>
-                <article class="caja-test">
+                <article class="caja-test" id="testimonio-4">
                     <ul style="list-style-type: '★ ';">
                         <li></li>
                         <li></li>
@@ -168,8 +197,40 @@
                 </article>
             </div>
         </section>
-
     </main>
+    <footer>
+        <div id="footer-1">
+            <h1>GMFitness</h1>
+                <ul>
+                    <li><i class="fa-brands fa-instagram"></i></li>
+                    <li><i class="fa-brands fa-facebook"></i></li>
+                    <li><i class="fa-brands fa-tiktok"></i></li>
+                    <li><i class="fa-brands fa-x-twitter"></i></li>
+                </ul>
+        </div>
+        <div id="footer-2">
+            <h2>Contacto</h2>
+            <ul>
+                <li><i class="fa-regular fa-envelope"></i>GMF@gmail.com</li>
+                <li><i class="fa-solid fa-phone"></i>+(57) 301 190 1911</li>
+                <li><i class="fa-solid fa-magnifying-glass-location"></i>Caldas, Antioquia</li>
+            </ul>
+        </div>
+        <div id="Descargas">
+            <h2>Descarga la app</h3>
+            <article class="descarga">
+                <i class="fa-brands  fa-apple"></i>
+                <p>Disponible en</p>
+                <h2>App Store</h2>
+            </article>
+            <article class="descarga">
+                <i class="fa-brands fa-google-play"></i>
+                <p>Disponible en</p>
+                <h2>Play Store</h2>
+            </article>
+        </div>
+    </footer>
+    <script src="arc/JS/botones.js"></script>
 </body>
 
 </html>
