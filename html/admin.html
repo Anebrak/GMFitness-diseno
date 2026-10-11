@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="arc/CSS/admin.css">
+    <title>Panel Admin - GMFitness</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div><button id="usuario-bola">DM</button></div>
+            <h1>GMFitness</h1>
+        </nav>
+    </header>
+
+    <aside id="barra-lateral">
+        <button type="button" id="btn-toggle" class="item-lateral" aria-label="Expandir o contraer menú">
+            <i class="fa-solid fa-bars"></i>
+            <span>Menú</span>
+        </button>
+        <button type="button" class="item-lateral activo" data-modulo="empleados">
+            <i class="fa-solid fa-user-tie"></i>
+            <span>Empleados</span>
+        </button>
+        <button type="button" class="item-lateral" data-modulo="clientes">
+            <i class="fa-solid fa-users"></i>
+            <span>Clientes</span>
+        </button>
+        <button type="button" class="item-lateral" data-modulo="sedes">
+            <i class="fa-solid fa-dumbbell"></i>
+            <span>Sedes</span>
+        </button>
+    </aside>
+
+    <main id="contenido">
+        <section id="modulo">
+            <div id="encabezado-modulo">
+                <h1 id="titulo-modulo">Empleados</h1>
+                <div id="herramientas">
+                    <div id="caja-buscar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" id="buscar" placeholder="Buscar por nombre, documento, correo...">
+                    </div>
+                    <button type="button" id="btn-agregar" class="btn boton-primario">
+                        <i class="fa-solid fa-plus"></i> Agregar
+                    </button>
+                </div>
+            </div>
+
+            <div id="tabla-contenedor">
+                <table id="tabla">
+                    <thead id="tabla-head"></thead>
+                    <tbody id="tabla-body"></tbody>
+                </table>
+            </div>
+
+            <div id="pie-tabla">
+                <span id="info-registros"></span>
+                <div id="paginacion"></div>
+            </div>
+        </section>
+    </main>
+
+
+    <div class="modal-overlay" id="modal-form" aria-hidden="true">
+        <section class="modal-caja" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="cerrar-form" type="button" aria-label="Cerrar">&times;</button>
+            <h2 id="titulo-form">Agregar</h2>
+            <form id="formulario" novalidate>
+                <div id="campos-form"></div>
+                <p id="error-form"></p>
+                <div class="modal-botones">
+                    <button type="button" id="cancelar-form" class="btn boton-secundario">Cancelar</button>
+                    <button type="submit" class="btn boton-primario">Guardar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+
+    <div class="modal-overlay" id="modal-eliminar" aria-hidden="true">
+        <section class="modal-caja modal-pequeno" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="cerrar-eliminar" type="button" aria-label="Cerrar">&times;</button>
+            <i class="fa-solid fa-triangle-exclamation icono-alerta"></i>
+            <h2>¿Eliminar registro?</h2>
+            <p id="texto-eliminar"></p>
+            <div class="modal-botones">
+                <button type="button" id="cancelar-eliminar" class="btn boton-secundario">Cancelar</button>
+                <button type="button" id="confirmar-eliminar" class="btn boton-peligro">Eliminar</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="arc/JS/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="arc/CSS/cliente.css">
+    <title>Panel Cliente - GMFitness</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="usuario-bola">DM</div>
+            <h1>GMFitness</h1>
+        </nav>
+    </header>
+
+    <aside id="barra-lateral">
+        <button type="button" id="btn-toggle" class="item-lateral" aria-label="Expandir o contraer barra lateral">
+            <i class="fa-solid fa-bars"></i>
+            <span>Contraer</span>
+        </button>
+        <button type="button" class="item-lateral activo" data-vista="menu">
+            <i class="fa-solid fa-table-cells-large"></i>
+            <span>Menú</span>
+        </button>
+        <button type="button" class="item-lateral" data-vista="objetivos">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Objetivos</span>
+        </button>
+        <button type="button" class="item-lateral" data-vista="mediciones">
+            <i class="fa-solid fa-ruler"></i>
+            <span>Mediciones</span>
+        </button>
+        <button type="button" class="item-lateral" data-vista="membresia">
+            <i class="fa-solid fa-id-card"></i>
+            <span>Membresía</span>
+        </button>
+        <button type="button" class="item-lateral" data-vista="mensajes">
+            <i class="fa-solid fa-comments"></i>
+            <span>Mensajes</span>
+        </button>
+    </aside>
+
+    <main id="contenido">
+
+        <!-- ================= MENÚ (predeterminado) ================= -->
+        <section class="vista activo" id="vista-menu">
+            <div id="cajas-menu">
+                <h1 class="titulo-vista">Menú</h1>
+                <article class="caja-of" id="menu-1">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <h2>Rutinas</h2>
+                    <p>Consulta tus entrenamientos adaptados a tu nivel y objetivos.</p>
+                </article>
+                <article class="caja-of" id="menu-2">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    <h2>Dietas</h2>
+                    <p>Revisa tu plan de nutrición según tus metas.</p>
+                </article>
+                <article class="caja-of" id="menu-3">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h2>Progreso</h2>
+                    <p>Visualiza tu evolución con métricas claras.</p>
+                </article>
+                <article class="caja-of" id="menu-4">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <h2>Personal profesional</h2>
+                    <p>Conoce al equipo que te acompaña en tu proceso.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================= OBJETIVOS ================= -->
+        <!-- ================= OBJETIVOS ================= -->
+        <section class="vista" id="vista-objetivos">
+            <div class="encabezado-vista">
+                <h1 class="titulo-vista">Objetivos</h1>
+                <div id="acciones-objetivo" class="oculto">
+                    <button type="button" class="btn-icono btn-editar" id="btn-editar-objetivo"
+                        aria-label="Editar objetivo"><i class="fa-solid fa-pen"></i></button>
+                    <button type="button" class="btn-icono btn-eliminar" id="btn-eliminar-objetivo"
+                        aria-label="Eliminar objetivo"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+
+            <!-- Estado vacío (si cierra el formulario inicial) -->
+            <div id="objetivos-vacio">
+                <i class="fa-solid fa-bullseye"></i>
+                <h2>Aún no tienes un objetivo</h2>
+                <p>Cuéntanos tu peso, altura y metas para crear tu gráfica de progreso.</p>
+                <button type="button" id="btn-config-objetivo" class="btn boton-primario">Configurar objetivo</button>
+            </div>
+
+            <div id="objetivos-contenido" class="oculto">
+                <div id="resumen-objetivo">
+                    <div class="stat">
+                        <p>Peso inicial</p>
+                        <h3 id="res-inicial"></h3>
+                    </div>
+                    <div class="stat">
+                        <p>Peso actual</p>
+                        <h3 id="res-actual"></h3>
+                    </div>
+                    <div class="stat">
+                        <p>Peso objetivo</p>
+                        <h3 id="res-meta"></h3>
+                    </div>
+                    <div class="stat">
+                        <p>% graso aprox. actual</p>
+                        <h3 id="res-grasa-actual"></h3>
+                    </div>
+                    <div class="stat">
+                        <p>% graso objetivo</p>
+                        <h3 id="res-grasa-meta"></h3>
+                    </div>
+                </div>
+
+                <div id="objetivos-grid">
+                    <div id="grafica-caja">
+                        <div id="grafica-lienzo"><canvas id="grafica-peso"></canvas></div>
+                        <div id="grafica-boton">
+                            <button type="button" id="btn-nuevo-peso" class="btn boton-primario">
+                                <i class="fa-solid fa-plus"></i> Ingresar nuevo peso
+                            </button>
+                        </div>
+                    </div>
+                    <aside id="registros-peso">
+                        <h3>Últimos registros</h3>
+                        <table class="tabla">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Peso</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body-pesos"></tbody>
+                        </table>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        <!-- ================= MEDICIONES ================= -->
+        <!-- ================= MEDICIONES ================= -->
+        <section class="vista" id="vista-mediciones">
+            <div class="encabezado-vista">
+                <h1 class="titulo-vista">Mediciones</h1>
+            </div>
+            <p class="texto-ayuda">Selecciona una parte del cuerpo para registrar su medida.</p>
+
+            <div id="mediciones-grid">
+                <div id="personaje-caja">
+                    <svg id="personaje" viewBox="0 0 240 510" role="img"
+                        aria-label="Cuerpo humano: selecciona la parte a medir">
+                        <!-- Partes fijas (no se miden) -->
+                        <circle class="fijo" cx="120" cy="42" r="30" />
+                        <rect class="fijo" x="82" y="95" width="76" height="185" rx="22" />
+                        <rect class="fijo" x="30" y="214" width="26" height="82" rx="13" />
+                        <rect class="fijo" x="184" y="214" width="26" height="82" rx="13" />
+                        <ellipse class="fijo" cx="100" cy="500" rx="18" ry="8" />
+                        <ellipse class="fijo" cx="140" cy="500" rx="18" ry="8" />
+
+                        <!-- Partes que se miden -->
+                        <rect class="parte" data-parte="cuello" x="107" y="72" width="26" height="24" rx="8">
+                            <title>Cuello</title>
+                        </rect>
+                        <circle class="parte" data-parte="hombros" cx="68" cy="112" r="20">
+                            <title>Hombros</title>
+                        </circle>
+                        <circle class="parte" data-parte="hombros" cx="172" cy="112" r="20">
+                            <title>Hombros</title>
+                        </circle>
+                        <rect class="parte" data-parte="pecho" x="86" y="124" width="68" height="50" rx="14">
+                            <title>Pecho</title>
+                        </rect>
+                        <rect class="parte" data-parte="brazo" x="38" y="136" width="28" height="74" rx="14">
+                            <title>Brazo</title>
+                        </rect>
+                        <rect class="parte" data-parte="brazo" x="174" y="136" width="28" height="74" rx="14">
+                            <title>Brazo</title>
+                        </rect>
+                        <rect class="parte" data-parte="cintura" x="86" y="178" width="68" height="40" rx="12">
+                            <title>Cintura</title>
+                        </rect>
+                        <rect class="parte" data-parte="cadera" x="82" y="222" width="76" height="50" rx="16">
+                            <title>Cadera</title>
+                        </rect>
+                        <rect class="parte" data-parte="muslo" x="82" y="278" width="36" height="108" rx="18">
+                            <title>Muslo</title>
+                        </rect>
+                        <rect class="parte" data-parte="muslo" x="122" y="278" width="36" height="108" rx="18">
+                            <title>Muslo</title>
+                        </rect>
+                        <rect class="parte" data-parte="pantorrilla" x="86" y="392" width="28" height="100" rx="14">
+                            <title>Pantorrilla</title>
+                        </rect>
+                        <rect class="parte" data-parte="pantorrilla" x="126" y="392" width="28" height="100" rx="14">
+                            <title>Pantorrilla</title>
+                        </rect>
+                    </svg>
+                </div>
+
+                <div class="tabla-contenedor" id="partes-caja">
+                    <table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>Parte</th>
+                                <th>Primera medida</th>
+                                <th>Medida actual</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-partes"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MEMBRESÍA ================= -->
+        <section class="vista" id="vista-membresia">
+            <div class="encabezado-vista">
+                <h1 class="titulo-vista">Membresía</h1>
+            </div>
+            <article id="tarjeta-membresia">
+                <div id="membresia-superior">
+                    <div>
+                        <p class="etiqueta-pequena">Plan actual</p>
+                        <h2 id="mem-plan">Gratis</h2>
+                        <p id="mem-precio">$0 / siempre</p>
+                    </div>
+                    <i class="fa-solid fa-crown" id="mem-icono"></i>
+                </div>
+
+                <div id="membresia-datos">
+                    <div>
+                        <p class="etiqueta-pequena">Inicio</p>
+                        <p id="mem-inicio">-</p>
+                    </div>
+                    <div>
+                        <p class="etiqueta-pequena">Vence</p>
+                        <p id="mem-fin">-</p>
+                    </div>
+                    <div>
+                        <p class="etiqueta-pequena">Tiempo restante</p>
+                        <p id="mem-restante">-</p>
+                    </div>
+                </div>
+
+                <div class="barra-progreso">
+                    <div id="mem-barra"></div>
+                </div>
+
+                <div id="membresia-boton">
+                    <button type="button" id="btn-premiun" class="btn boton-primario">
+                        <i class="fa-solid fa-crown"></i> Pásate a Premiun
+                    </button>
+                </div>
+            </article>
+        </section>
+
+        <!-- ================= MENSAJES ================= -->
+        <section class="vista" id="vista-mensajes">
+            <div class="encabezado-vista">
+                <h1 class="titulo-vista">Mensajes</h1>
+            </div>
+            <div id="chat-contenedor">
+                <div id="lista-contactos"></div>
+                <div id="panel-chat">
+                    <div id="chat-cabecera">
+                        <div class="avatar-chat" id="chat-avatar"></div>
+                        <div>
+                            <h3 id="chat-nombre"></h3>
+                            <small id="chat-rol"></small>
+                        </div>
+                    </div>
+                    <div id="chat-mensajes"></div>
+                    <form id="chat-form" autocomplete="off">
+                        <input type="text" id="chat-input" placeholder="Escribe un mensaje...">
+                        <button type="submit" class="btn boton-primario" id="chat-enviar" aria-label="Enviar">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal medir parte del cuerpo -->
+    <div class="modal-overlay" id="modal-medida" aria-hidden="true">
+        <section class="modal-caja" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="cerrar-medida" type="button" aria-label="Cerrar">&times;</button>
+            <h2 id="titulo-medida">Medir</h2>
+            <form id="form-medida" novalidate>
+                <div class="campos-modal">
+                    <div class="grupo-campo">
+                        <label for="medida-fecha">Fecha</label>
+                        <input type="date" id="medida-fecha">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="medida-valor">Medida (cm)</label>
+                        <input type="number" id="medida-valor" step="0.1" inputmode="decimal">
+                    </div>
+                </div>
+                <p class="error-modal" id="error-medida"></p>
+                <div class="modal-botones">
+                    <button type="button" id="cancelar-medida" class="btn boton-secundario">Cancelar</button>
+                    <button type="submit" class="btn boton-primario">Guardar</button>
+                </div>
+            </form>
+
+            <h3 class="subtitulo-modal">Historial</h3>
+            <div class="tabla-contenedor historial-medida">
+                <table class="tabla">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Medida</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body-historial-medida"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal confirmar eliminar -->
+    <div class="modal-overlay" id="modal-eliminar" aria-hidden="true">
+        <section class="modal-caja modal-pequeno" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="cerrar-eliminar" type="button" aria-label="Cerrar">&times;</button>
+            <i class="fa-solid fa-triangle-exclamation icono-alerta"></i>
+            <h2>¿Eliminar registro?</h2>
+            <p id="texto-eliminar"></p>
+            <div class="modal-botones">
+                <button type="button" id="cancelar-eliminar" class="btn boton-secundario">Cancelar</button>
+                <button type="button" id="confirmar-eliminar" class="btn boton-peligro">Eliminar</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal pasarse a premiun -->
+    <div class="modal-overlay" id="modal-premiun" aria-hidden="true">
+        <section class="modal-caja modal-pequeno" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="cerrar-premiun" type="button" aria-label="Cerrar">&times;</button>
+            <i class="fa-solid fa-crown icono-premiun"></i>
+            <h2>Pásate a Premiun</h2>
+            <p>Dietas y rutinas ilimitadas, personalización avanzada e historial completo por $89.000 al mes.</p>
+            <div class="modal-botones">
+                <button type="button" id="cancelar-premiun" class="btn boton-secundario">Ahora no</button>
+                <button type="button" id="confirmar-premiun" class="btn boton-primario">Confirmar</button>
+            </div>
+        </section>
+    </div>
+    <!-- Modal configurar / editar objetivo -->
+    <div class="modal-overlay" id="modal-objetivo" aria-hidden="true">
+        <section class="modal-caja" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="cerrar-objetivo" type="button" aria-label="Cerrar">&times;</button>
+            <h2 id="titulo-objetivo">Cuéntanos sobre ti</h2>
+            <p class="texto-modal" id="texto-objetivo"></p>
+            <form id="form-objetivo" novalidate>
+                <div class="campos-modal">
+                    <div class="grupo-campo" id="grupo-obj-peso">
+                        <label for="obj-peso">¿Cuánto pesas? (kg)</label>
+                        <input type="number" id="obj-peso" min="20" max="400" step="0.1" inputmode="decimal">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="obj-altura">Altura (cm)</label>
+                        <input type="number" id="obj-altura" min="100" max="250" step="0.1" inputmode="decimal">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="obj-meta-peso">¿A qué peso deseas llegar? (kg)</label>
+                        <input type="number" id="obj-meta-peso" min="20" max="400" step="0.1" inputmode="decimal">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="obj-meta-grasa">¿A qué % graso deseas llegar?</label>
+                        <input type="number" id="obj-meta-grasa" min="1" max="70" step="0.1" inputmode="decimal">
+                    </div>
+                </div>
+                <p class="error-modal" id="error-objetivo"></p>
+                <div class="modal-botones">
+                    <button type="button" id="cancelar-objetivo" class="btn boton-secundario">Cancelar</button>
+                    <button type="submit" class="btn boton-primario">Guardar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!-- Modal nuevo peso -->
+    <div class="modal-overlay" id="modal-peso" aria-hidden="true">
+        <section class="modal-caja modal-pequeno" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="cerrar-peso" type="button" aria-label="Cerrar">&times;</button>
+            <h2>Nuevo peso</h2>
+            <form id="form-peso" novalidate>
+                <div class="campos-modal" style="text-align:left">
+                    <div class="grupo-campo">
+                        <label for="peso-fecha">Fecha</label>
+                        <input type="date" id="peso-fecha">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="peso-valor">Peso (kg)</label>
+                        <input type="number" id="peso-valor" min="20" max="400" step="0.1" inputmode="decimal">
+                    </div>
+                </div>
+                <p class="error-modal" id="error-peso"></p>
+                <div class="modal-botones">
+                    <button type="button" id="cancelar-peso" class="btn boton-secundario">Cancelar</button>
+                    <button type="submit" class="btn boton-primario">Guardar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+    <script src="arc/JS/cliente.js"></script>
+</body>
+
+</html>

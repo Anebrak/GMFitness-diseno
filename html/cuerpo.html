@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo Anatómico - Sistema Muscular</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --muscle-default: #ef4444;
+            --muscle-hover: #f43f5e;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+            max-width: 900px;
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+        }
+
+        /* Contenedor del Cuerpo Humano mediante CSS Grid/Flex */
+        .body-canvas {
+            position: relative;
+            width: 240px;
+            height: 520px;
+            background-color: #334155;
+            border-radius: 40px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Estilo base para cada músculo */
+        .muscle {
+            background-color: var(--muscle-default);
+            border: 2px solid #7f1d1d;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-center: center;
+            position: absolute;
+        }
+
+        /* Animación y cambio de color al pasar el cursor (Hover) */
+        .muscle:hover {
+            background-color: var(--muscle-hover);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.8);
+            z-index: 10;
+        }
+
+        /* Tooltip dinámico usando puros selectores CSS */
+        .muscle::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background-color: #000;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 11px;
+            border-radius: 4px;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border: 1px solid var(--accent-color);
+        }
+
+        .muscle:hover::after {
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* Posicionamiento absoluto y proporciones del esquema anatómico */
+        .cabeza {
+            top: 20px; width: 50px; height: 50px; border-radius: 50%;
+        }
+        
+        .trapecio {
+            top: 75px; width: 80px; height: 20px; border-radius: 20px 20px 0 0;
+        }
+
+        .deltoides-izq {
+            top: 95px; left: 35px; width: 30px; height: 45px; border-radius: 15px 5px 5px 15px;
+        }
+
+        .deltoides-der {
+            top: 95px; right: 35px; width: 30px; height: 45px; border-radius: 5px 15px 15px 5px;
+        }
+
+        .pectorales {
+            top: 95px; width: 100px; height: 50px; border-radius: 4px 4px 15px 15px;
+        }
+
+        .biceps-izq {
+            top: 145px; left: 35px; width: 25px; height: 55px; border-radius: 8px;
+        }
+
+        .biceps-der {
+            top: 145px; right: 35px; width: 25px; height: 55px; border-radius: 8px;
+        }
+
+        .abdominales {
+            top: 150px; width: 80px; height: 80px; border-radius: 6px;
+        }
+
+        .antebrazo-izq {
+            top: 205px; left: 25px; width: 22px; height: 65px; border-radius: 6px;
+        }
+
+        .antebrazo-der {
+            top: 205px; right: 25px; width: 22px; height: 65px; border-radius: 6px;
+        }
+
+        .cuadriceps-izq {
+            top: 245px; left: 55px; width: 40px; height: 110px; border-radius: 10px 10px 20px 20px;
+        }
+
+        .cuadriceps-der {
+            top: 245px; right: 55px; width: 40px; height: 110px; border-radius: 10px 10px 20px 20px;
+        }
+
+        .gemelos-izq {
+            top: 370px; left: 60px; width: 32px; height: 95px; border-radius: 15px 15px 8px 8px;
+        }
+
+        .gemelos-der {
+            top: 370px; right: 60px; width: 32px; height: 95px; border-radius: 15px 15px 8px 8px;
+        }
+
+        /* Panel lateral de información */
+        .info-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-panel h2 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            background: rgba(255,255,255,0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* Ajustes responsivos */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-panel {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sistema Muscular Humano</h1>
+    <p class="subtitle">Pasa el cursor sobre las regiones rojas para identificar los músculos principales</p>
+
+    <div class="container">
+        <!-- Lienzo del cuerpo donde se estructuran los músculos con CSS absoluto -->
+        <div class="body-canvas">
+            <div class="muscle cabeza" data-name="Músculos Faciales / Craneales"></div>
+            <div class="muscle trapecio" data-name="Trapecio"></div>
+            <div class="muscle deltoides-izq" data-name="Deltoides Izquierdo"></div>
+            <div class="muscle deltoides-der" data-name="Deltoides Derecho"></div>
+            <div class="muscle pectorales" data-name="Pectoral Mayor"></div>
+            <div class="muscle biceps-izq" data-name="Bíceps Braquial Izquierdo"></div>
+            <div class="muscle biceps-der" data-name="Bíceps Braquial Derecho"></div>
+            <div class="muscle abdominales" data-name="Recto Abdominal"></div>
+            <div class="muscle antebrazo-izq" data-name="Flexores/Extensores del Antebrazo"></div>
+            <div class="muscle antebrazo-der" data-name="Flexores/Extensores del Antebrazo"></div>
+            <div class="muscle cuadriceps-izq" data-name="Cuádriceps Femoral Izquierdo"></div>
+            <div class="muscle cuadriceps-der" data-name="Cuádriceps Femoral Derecho"></div>
+            <div class="muscle gemelos-izq" data-name="Gastrocnemio (Gemelo) Izquierdo"></div>
+            <div class="muscle gemelos-der" data-name="Gastrocnemio (Gemelo) Derecho"></div>
+        </div>
+
+        <!-- Panel de Información -->
+        <div class="info-panel">
+            <h2>Guía Anatómica Rápida</h2>
+            <p>Los músculos esqueléticos se encargan de generar el movimiento, mantener la postura y estabilizar las articulaciones del esqueleto.</p>
+            
+            <div class="legend-grid">
+                <div class="legend-item"><strong>Superior:</strong> Deltoides, Pectorales y Bíceps.</div>
+                <div class="legend-item"><strong>Core / Tronco:</strong> Recto Abdominal y Trapecios.</div>
+                <div class="legend-item"><strong>Inferior:</strong> Cuádriceps y Gastrocnemios.</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
