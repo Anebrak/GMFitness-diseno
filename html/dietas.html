@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="arc/CSS/dietas.css">
+    <title>Dieta - GMFitness</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="usuario-bola">DM</div>
+            <h1>GMFitness</h1>
+        </nav>
+    </header>
+
+    <aside id="barra-lateral">
+        <button type="button" id="btn-toggle" class="item-lateral" aria-label="Expandir o contraer barra lateral">
+            <i class="fa-solid fa-bars"></i>
+            <span>Contraer</span>
+        </button>
+        <button type="button" class="item-lateral activo" data-vista="dieta">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Mi dieta</span>
+        </button>
+        <button type="button" class="item-lateral" data-vista="alimentos">
+            <i class="fa-solid fa-apple-whole"></i>
+            <span>Alimentos</span>
+        </button>
+    </aside>
+
+    <main id="contenido">
+
+      
+        <section class="vista activo" id="vista-dieta">
+            <div class="encabezado-vista">
+                <h1 class="titulo-vista">Mi dieta</h1>
+                <button type="button" id="btn-metas" class="btn boton-secundario">
+                    <i class="fa-solid fa-sliders"></i> Editar metas
+                </button>
+            </div>
+
+            <div id="barra-dia">
+                <button type="button" class="btn-icono" id="dia-anterior" aria-label="Día anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                <div id="dia-label"></div>
+                <button type="button" class="btn-icono" id="dia-siguiente" aria-label="Día siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+                <button type="button" class="btn boton-secundario btn-mini oculto" id="dia-hoy">Ir a hoy</button>
+            </div>
+
+            <div id="resumen-dia">
+                <div id="anillo-caja">
+                    <svg viewBox="0 0 220 220" aria-hidden="true">
+                        <circle class="anillo-fondo" cx="110" cy="110" r="90"></circle>
+                        <circle class="anillo-valor" id="anillo-valor" cx="110" cy="110" r="90"></circle>
+                    </svg>
+                    <div id="anillo-texto"></div>
+                </div>
+                <div id="macros">
+                    <div class="macro-fila macro-prot">
+                        <div class="macro-cab"><span>Proteínas</span><strong id="mac-prot-txt"></strong></div>
+                        <div class="barra-macro"><div id="mac-prot-barra"></div></div>
+                    </div>
+                    <div class="macro-fila macro-carb">
+                        <div class="macro-cab"><span>Carbohidratos</span><strong id="mac-carb-txt"></strong></div>
+                        <div class="barra-macro"><div id="mac-carb-barra"></div></div>
+                    </div>
+                    <div class="macro-fila macro-grasa">
+                        <div class="macro-cab"><span>Grasas</span><strong id="mac-grasa-txt"></strong></div>
+                        <div class="barra-macro"><div id="mac-grasa-barra"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comidas"></div>
+        </section>
+
+       
+        <section class="vista" id="vista-alimentos">
+            <div class="encabezado-vista">
+                <h1 class="titulo-vista">Alimentos</h1>
+                <button type="button" id="btn-nuevo-alimento" class="btn boton-primario">
+                    <i class="fa-solid fa-plus"></i> Nuevo alimento
+                </button>
+            </div>
+
+            <div id="alimentos-barra">
+                <div class="caja-busqueda">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="buscar-alimento" placeholder="Buscar alimento..." autocomplete="off" aria-label="Buscar alimento">
+                </div>
+                <select id="filtro-cat" aria-label="Filtrar por categoría"></select>
+            </div>
+
+            <div id="alimentos-layout">
+                <div id="lista-alimentos"></div>
+                <aside id="detalle-alimento"></aside>
+            </div>
+        </section>
+    </main>
+
+   
+    <div class="modal-overlay" id="modal-comida" aria-hidden="true">
+        <section class="modal-caja" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" type="button" data-cerrar aria-label="Cerrar">&times;</button>
+            <h2 id="mc-titulo">Agregar alimento</h2>
+            <form id="form-comida" novalidate>
+                <div class="campos-modal">
+                    <div class="grupo-campo">
+                        <label for="mc-comida">Comida</label>
+                        <select id="mc-comida">
+                            <option value="desayuno">Desayuno</option>
+                            <option value="almuerzo">Almuerzo</option>
+                            <option value="cena">Cena</option>
+                        </select>
+                    </div>
+
+                    <div id="mc-busqueda-zona" class="campos-modal">
+                        <div class="fila-dos">
+                            <div class="grupo-campo">
+                                <label for="mc-buscar">Buscar</label>
+                                <input type="search" id="mc-buscar" placeholder="Ej: arroz" autocomplete="off">
+                            </div>
+                            <div class="grupo-campo">
+                                <label for="mc-cat">Categoría</label>
+                                <select id="mc-cat"></select>
+                            </div>
+                        </div>
+                        <div id="mc-resultados" class="lista-resultados"></div>
+                    </div>
+
+                    <div id="mc-seleccion" class="oculto">
+                        <p class="etiqueta-pequena">Alimento seleccionado</p>
+                        <h3 id="mc-nombre"></h3>
+                        <div class="fila-dos">
+                            <div class="grupo-campo">
+                                <label for="mc-gramos">Cantidad (g)</label>
+                                <input type="number" id="mc-gramos" min="1" max="2000" step="1" inputmode="decimal">
+                            </div>
+                            <div class="grupo-campo">
+                                <label>&nbsp;</label>
+                                <button type="button" class="btn boton-secundario" id="mc-usar-porcion"></button>
+                            </div>
+                        </div>
+                        <div id="mc-preview"></div>
+                    </div>
+                </div>
+                <p class="error-modal" id="error-comida"></p>
+                <div class="modal-botones">
+                    <button type="button" class="btn boton-secundario" data-cerrar>Cancelar</button>
+                    <button type="submit" class="btn boton-primario" id="mc-guardar">Agregar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    
+    <div class="modal-overlay" id="modal-nuevo-al" aria-hidden="true">
+        <section class="modal-caja" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" type="button" data-cerrar aria-label="Cerrar">&times;</button>
+            <h2>Nuevo alimento</h2>
+            <p class="texto-modal">Ingresa los valores nutricionales por cada 100 g.</p>
+            <form id="form-nuevo-al" novalidate>
+                <div class="campos-modal">
+                    <div class="grupo-campo"><label for="na-nombre">Nombre</label><input type="text" id="na-nombre" maxlength="50"></div>
+                    <div class="grupo-campo"><label for="na-cat">Categoría</label><input type="text" id="na-cat" list="lista-categorias" maxlength="30"><datalist id="lista-categorias"></datalist></div>
+                    <div class="fila-dos">
+                        <div class="grupo-campo"><label for="na-porcion">Porción típica (g)</label><input type="number" id="na-porcion" min="1" max="1000" value="100" inputmode="decimal"></div>
+                        <div class="grupo-campo"><label for="na-porcion-txt">Nombre de la porción</label><input type="text" id="na-porcion-txt" maxlength="30" placeholder="Ej: 1 unidad"></div>
+                    </div>
+                    <div class="fila-dos">
+                        <div class="grupo-campo"><label for="na-kcal">Calorías (kcal)</label><input type="number" id="na-kcal" min="0" max="900" step="0.1" inputmode="decimal"></div>
+                        <div class="grupo-campo"><label for="na-prot">Proteínas (g)</label><input type="number" id="na-prot" min="0" max="100" step="0.1" inputmode="decimal"></div>
+                    </div>
+                    <div class="fila-dos">
+                        <div class="grupo-campo"><label for="na-carb">Carbohidratos (g)</label><input type="number" id="na-carb" min="0" max="100" step="0.1" inputmode="decimal"></div>
+                        <div class="grupo-campo"><label for="na-grasa">Grasas (g)</label><input type="number" id="na-grasa" min="0" max="100" step="0.1" inputmode="decimal"></div>
+                    </div>
+                    <div class="grupo-campo"><label for="na-imagen">URL de la imagen (opcional)</label><input type="url" id="na-imagen" placeholder="https://..."></div>
+                </div>
+                <p class="error-modal" id="error-nuevo-al"></p>
+                <div class="modal-botones">
+                    <button type="button" class="btn boton-secundario" data-cerrar>Cancelar</button>
+                    <button type="submit" class="btn boton-primario">Guardar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+
+    <div class="modal-overlay" id="modal-metas" aria-hidden="true">
+        <section class="modal-caja modal-pequeno" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" type="button" data-cerrar aria-label="Cerrar">&times;</button>
+            <h2>Metas diarias</h2>
+            <form id="form-metas" novalidate>
+                <div class="campos-modal" style="text-align:left">
+                    <div class="grupo-campo"><label for="mt-kcal">Calorías (kcal)</label><input type="number" id="mt-kcal" min="800" max="6000" inputmode="numeric"></div>
+                    <div class="grupo-campo"><label for="mt-prot">Proteínas (g)</label><input type="number" id="mt-prot" min="20" max="400" inputmode="numeric"></div>
+                    <div class="grupo-campo"><label for="mt-carb">Carbohidratos (g)</label><input type="number" id="mt-carb" min="20" max="800" inputmode="numeric"></div>
+                    <div class="grupo-campo"><label for="mt-grasa">Grasas (g)</label><input type="number" id="mt-grasa" min="10" max="300" inputmode="numeric"></div>
+                </div>
+                <p class="error-modal" id="error-metas"></p>
+                <div class="modal-botones">
+                    <button type="button" class="btn boton-secundario" data-cerrar>Cancelar</button>
+                    <button type="submit" class="btn boton-primario">Guardar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script src="arc/JS/dietas.js"></script>
+</body>
+
+</html>

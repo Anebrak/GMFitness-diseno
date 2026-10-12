@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="arc/CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Landing page</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>GMFitness</h1>
+            <ul>
+                <li>Contacto</li>
+                <li>Planes</li>
+                <li>testimonios</li>
+            </ul>
+            <div>
+                <button class="btn boton-secundario" id="abrir-register" type="button"> Register</button>
+                <button class="btn boton-primario" id="abrir-login" type="button"> Login</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="modal-overlay" id="modal-login" aria-hidden="true">
+            <section id="login" role="dialog" aria-modal="true">
+                <button class="modal-cerrar" id="cerrar-login" type="button" aria-label="Cerrar">&times;</button>
+                <span>Nombre</span>
+                <input type="text">
+                <span>Contraseña</span>
+                <input type="text">
+                <span id="linklogin">Aun no estas registrado haz click<a> aqui </a>.</span>
+                <button class="btn boton-primario" id="ingreso-login" type="button"> Login</button>
+            </section>
+        </div>
+
+
+        <div class="modal-overlay" id="modal-register" aria-hidden="true">
+            <section id="register" role="dialog" aria-modal="true">
+                <button class="modal-cerrar" id="cerrar-register" type="button" aria-label="Cerrar">&times;</button>
+                <span>Nombre</span>
+                <input type="text">
+                <span>Correo</span>
+                <input type="email">
+                <span>Contraseña</span>
+                <input type="password">
+                <span>Confirmar contraseña</span>
+                <input type="password">
+                <span id="linklogin">Si ya estas registrado haz click<a> aqui </a>.</span>
+                <button class="btn boton-primario" id="ingreso-register" type="button">Register</button>
+            </section>
+        </div>
+
+        <section id="oferta">
+            <div id="cajas-oferta">
+                <h1>Lo que ofrecemos</h1>
+                <article class="caja-of" id="of-1">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <h2>Rutinas personalizadas</h2>
+                    <p>Entrenamientos adaptados a tu nivel, objetivos y equipo disponible.</p>
+                </article>
+                <article class="caja-of" id="of-2">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    <h2>Planes de dieta</h2>
+                    <p>Nutrición basada en tus metas: volumen, definición o mantenimiento.</p>
+                </article>
+                <article class="caja-of" id="of-3">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h2>Seguimiento de progreso</h2>
+                    <p>Visualiza tu evolución con métricas claras y gráficas detalladas.</p>
+                </article>
+                <article class="caja-of" id="of-4">
+                    <i class="fa-solid fa-calendar"></i>
+                    <h2>Planificacion semanal</h2>
+                    <p>Organiza tu semana con recordatorios y estructura tu entrenamiento.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="planes">
+            <div id="cajas-planes">
+                <h1>Planes</h1>
+                <h2>Empieza gratis, escala cuando quieras.</h2>
+                <article id="gratis">
+                    <div id="texto-planes">
+                        <h3>Gratis</h3>
+                        <div>
+                            <p>$0 /</p>
+                            <p>siempre</p>
+                        </div>
+                    </div>
+                    <div id="ul-gratis">
+                        <ul>
+                            <li>Solo puede tener 2 dietas y rutinas activas al mismo tiempo.</li>
+                            <li>Las rutinas y dietas solo muestran información básica</li>
+                            <li>Solo puede editar su rutina o dieta 1 vez por semana</li>
+                            <li>Usa plantillas fijas que solo se llenan con datos básicos.</li>
+                            <li>Solo puede ver su rutina o dieta actual.</li>
+                        </ul>
+                    </div>
+                    <div id="bt-gratis">
+                        <button id="btn-gratis" type="button" class="btn boton-secundario">Comienza Gratis</button>
+                    </div>
+                </article>
+                <article id="premiun">
+                    <div id="texto-planes-p">
+                        <h3>Premiun</h3>
+                        <div>
+                            <p>$89.000 /</p>
+                            <p class="p-texto">al mes</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Lietas y rutinas ilimitadas</li>
+                            <li>Personalización avanzada (progresión de peso, descansos, macros por comida,
+                                sustituciones de
+                                alimentos).</li>
+                            <li>Puede editar y regenerar sus rutinas y dietas las veces que quiera.</li>
+                            <li>El sistema ajusta automáticamente la dieta y rutina según su progreso real.</li>
+                            <li>Tiene acceso a todo su historial y gráficas de evolución.</li>
+                        </ul>
+                    </div>
+                    <div id="bt-premiun">
+                        <button id="btn-premiun" type="button" class="btn boton-primario">Optener premiun</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section id="testimonios">
+            <div id="cajas-testimonios">
+                <h1 class="titulo"> Testimonios</h1>
+                <h2>Lo que dicen nuestros usuarios</h2>
+                <article class="caja-test" id="testimonio-1">
+                    <ul style="list-style-type: '★ ';">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>"Llevo 3 meses usando la app y bajé 9 kilos siguiendo las rutinas y los planes de dieta.
+                        Todo está muy bien explicado, incluso para alguien que nunca había entrenado."</p>
+                    <div class="Recuadro-usu">
+                        <h1>DM</h1>
+                    </div>
+                </article>
+                <article class="caja-test" id="testimonio-2">
+                    <ul style="list-style-type: '★ ';">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>"Me encanta que puedo planificar toda mi semana desde la computadora. Las dietas están
+                        muy
+                        completas y se adaptan a lo que tengo en casa. 100% recomendada."</p>
+                    <div class="Recuadro-usu">
+                        <h1>SR</h1>
+                    </div>
+                </article>
+                <article class="caja-test" id="testimonio-3">
+                    <ul style="list-style-type: '★ ';">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>"Lo que más me gusta es que las rutinas explican bien cada ejercicio y puedes ajustar la
+                        dificultad según cómo te sientas ese día. Llevo 2 meses y ya no me imagino entrenar sin
+                        la app."</p>
+                    <div class="Recuadro-usu">
+                        <h1>BR</h1>
+                    </div>
+                </article>
+                <article class="caja-test" id="testimonio-4">
+                    <ul style="list-style-type: '★ ';">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>"Probé muchas apps de fitness pero ninguna me convencía. Esta es diferente porque
+                        puedes verlo todo en pantalla grande y organizarte mejor. Las dietas son variadas y
+                        ricas, no ese típico pollo con arroz de siempre."</p>
+                    <div class="Recuadro-usu">
+                        <h1>MD</h1>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div id="footer-1">
+            <h1>GMFitness</h1>
+                <ul>
+                    <li><i class="fa-brands fa-instagram"></i></li>
+                    <li><i class="fa-brands fa-facebook"></i></li>
+                    <li><i class="fa-brands fa-tiktok"></i></li>
+                    <li><i class="fa-brands fa-x-twitter"></i></li>
+                </ul>
+        </div>
+        <div id="footer-2">
+            <h2>Contacto</h2>
+            <ul>
+                <li><i class="fa-regular fa-envelope"></i>GMF@gmail.com</li>
+                <li><i class="fa-solid fa-phone"></i>+(57) 301 190 1911</li>
+                <li><i class="fa-solid fa-magnifying-glass-location"></i>Caldas, Antioquia</li>
+            </ul>
+        </div>
+        <div id="Descargas">
+            <h2>Descarga la app</h3>
+            <article class="descarga">
+                <i class="fa-brands  fa-apple"></i>
+                <p>Disponible en</p>
+                <h2>App Store</h2>
+            </article>
+            <article class="descarga">
+                <i class="fa-brands fa-google-play"></i>
+                <p>Disponible en</p>
+                <h2>Play Store</h2>
+            </article>
+        </div>
+    </footer>
+    <script src="arc/JS/botones.js"></script>
+</body>
+
+</html>
